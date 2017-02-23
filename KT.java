@@ -62,20 +62,20 @@ public class KT{
 		double LoppKesk3=KokkuKeskmine(kilomeeterKesk);
 		System.out.println("5 kilomeetri läbimise kesmine kiirus on: "+LoppKesk3);
 		
+		
 		//Kolmanda punkti ülesanne
 		System.out.println("Kolmas ülesanne-------------------------------------------");
 		
-		//BufferedReader lugeja=new BufferedReader(new FileReader("KeskmisteVastus.txt"));
-		//String rida=lugeja.readLine();
-		//String oigevastus = "Veebiaadressilt loetud kilomeetriste lõikude kogu teekonna keskmine kiirus on: 13.157752";
-		//lugeja.close(); 
-		//if(rida.equals("Veebiaadressilt loetud kilomeetriste lõikude kogu teekonna keskmine kiirus on: 13.157752")){
-		//	System.out.println("Õige vastus");}
-		//if(!rida.equals("Veebiaadressilt loetud kilomeetriste lõikude kogu teekonna keskmine kiirus on: 13.157752")){
-			//System.out.println("Võib arvutada");
-			//lugeja.close(); 
+		String oigevastus = "Veebiaadressilt loetud kilomeetriste lõikude kogu teekonna keskmine kiirus on: 13.157752";
+		
+		BufferedReader lugeja=new BufferedReader(new FileReader("KeskmisteVastus.txt"));
+		String rida=lugeja.readLine();
+		lugeja.close(); 
+		
+		if (rida == null || !rida.equals(oigevastus)) {
+			System.out.println("Peab arvutama uuesti, kuna ei ole õige vastus või vastus puudub."); 
 			BufferedReader lugeja2 = new BufferedReader(new InputStreamReader(
-			new URL("http://www.tlu.ee/~matu350/KT_keskmised%20kiirused.txt").openConnection().getInputStream()
+				new URL("http://www.tlu.ee/~matu350/KT_keskmised%20kiirused.txt").openConnection().getInputStream()
 			));
 			String rida2=lugeja2.readLine();
 			PrintWriter kirjutaja=new PrintWriter(new FileWriter("KeskmisteVastus.txt"));
@@ -93,12 +93,9 @@ public class KT{
 			kirjutaja.println("Veebiaadressilt loetud kilomeetriste lõikude kogu teekonna keskmine kiirus on: "+kokku);
 			kirjutaja.close();
 			lugeja2.close(); 
-		//}
+		} else {
+			System.out.println("Õige vastus. Pole vaja arvutada.");
+		}
 		
 	}
 }
-
-		
-
-
-
